@@ -4,11 +4,9 @@ package com.javatpoint.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,9 +21,7 @@ public class  AdminLogin extends HttpServlet {
 	
 	
 	
-	protected  void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		
+	protected   void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
@@ -43,25 +39,19 @@ public class  AdminLogin extends HttpServlet {
 		{
 		if(email.equals("admin@jtp.com")&&password.equals("admin123")){
 			
-		//	synchronized(this)	
 
-			Extcall verobj = new Extcall();
+			Librarymem newobj2 = new Librarymem ();
 			try {
-				verobj.sendGET();
-				verobj.sendGET2();
-			} catch (IOException e1) {
+				newobj2.memcall();
+			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e.printStackTrace();
 			}
-
-				
+		
 				
 			HttpSession session=request.getSession();
 			
-			//synchronized(this)
+			
 			{
 			session.setAttribute("admin","true");
 			try {
@@ -88,7 +78,7 @@ public class  AdminLogin extends HttpServlet {
 		}
 		out.close();
 		
-	/*	
+		
 		for(int i=1;i<=10;i++){  
 			int abc = 7 + 9;
 			try {
@@ -97,8 +87,7 @@ public class  AdminLogin extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	}*/
-		
+	}
 	}
 }
 
